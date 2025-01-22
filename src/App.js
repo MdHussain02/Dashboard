@@ -5,7 +5,7 @@ import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import Analytics from './components/Analytics';
-import Page3 from './components/Page3';
+import Users from './components/Users';
 import Page4 from './components/Page4';
 import Page5 from './components/Page5';
 import Page6 from './components/Page6';
@@ -38,8 +38,8 @@ function App() {
               }
             >
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="Analytics" element={<Analytics/>} />
-              <Route path="page3" element={<Page3 />} />
+              <Route path="analytics" element={<Analytics/>} />
+              <Route path="users" element={<Users />} />
               <Route path="page4" element={<Page4 />} />
               <Route path="page5" element={<Page5 />} />
               <Route path="page6" element={<Page6 />} />
