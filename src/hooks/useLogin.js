@@ -64,6 +64,9 @@ const useLogin = () => {
       console.log('Response data:', data);
   
       if (response.ok) {
+        // Save the JWT token in localStorage or cookies for future authentication
+        localStorage.setItem('authToken', data.token);
+  
         setShowSplash(true);
         setLogged(true);
         setTimeout(() => navigate('/home/dashboard'), 1000);
