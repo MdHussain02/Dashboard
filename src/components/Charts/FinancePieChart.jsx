@@ -63,6 +63,9 @@ const FinancePieChart = () => {
           />
         </div>
       )}
+      <div>
+        <p>Total Income: ${totals.income.toLocaleString()}</p>
+      </div>
     </div>
   );
 };
