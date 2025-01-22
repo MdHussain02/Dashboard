@@ -36,9 +36,9 @@ const FinanceForm = () => {
   };
 
   return (
-    <div className=" mt-5">
+    <div className="mt-5">
       <h2 className="text-center mb-4">Monthly Finance Form</h2>
-      <form onSubmit={handleSubmit} className="border p-3 rounded shadow-sm bg-light w-50 mx-auto">
+      <form onSubmit={handleSubmit} className="p-3" style={{ width: '300px' }}>
         <div className="mb-3">
           <label htmlFor="month" className="form-label">Month:</label>
           <select
