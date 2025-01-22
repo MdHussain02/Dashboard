@@ -29,19 +29,19 @@ const Sidebar = ({ pages, handleNavigation, isActivePage }) => {
           return (
             <div key={page.id}>
               <Nav.Link
-                className={`sidebar-link ${isActive ? "active" : ""}`}
+                className={`sidebar-link mt-2 ${isActive ? "active" : ""}`}
                 onClick={() => handleNavigation(page.route)}
               >
                 <Icon className="nav-icon" />
-                <span className="nav-label">{page.name}</span>
+                <span className="nav-label ms-1">{page.name}</span>
               </Nav.Link>
             </div>
           );
         })}
         {logged&&(
-        <Nav.Link onClick={handleShowModal} className="sidebar-link-out">
+        <Nav.Link onClick={handleShowModal} className="sidebar-link-out mt-2">
           <LogOut className="nav-icon" />
-          <span className="nav-label">Logout</span>
+          <span className="nav-label ms-1">Logout</span>
         </Nav.Link>
         )
         }

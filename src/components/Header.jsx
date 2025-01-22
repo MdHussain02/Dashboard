@@ -16,7 +16,7 @@ const Header = () => {
     <>
       <Navbar bg="white" className="border-bottom header" style={{ position: "relative" }}>
         <Container fluid>
-          <Navbar.Brand className="d-flex align-items-center">
+          <Navbar.Brand className="d-flex align-items-center mt-1">
             <HomeIcon className="brand-icon" />
             <span className="ms-2 fw-semibold">Home</span>
           </Navbar.Brand>
