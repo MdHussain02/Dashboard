@@ -3,7 +3,6 @@ import { User, Lock, Eye, EyeOff } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Signup.css';
 import useSignup from '../hooks/useSignup';
-
 const Signup = () => {
   const {
     username,

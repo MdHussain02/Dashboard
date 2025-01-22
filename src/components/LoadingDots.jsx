@@ -37,7 +37,6 @@ const styles = `
   }
 
   .dot {
-    background-color: #2563eb;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
     animation: bounce 1.5s ease-in-out infinite;

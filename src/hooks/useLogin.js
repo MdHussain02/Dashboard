@@ -7,6 +7,7 @@ const useLogin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showSplash, setShowSplash] = useState(false);
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
   const [logged, setLogged] = useRecoilState(isLoggedInState);
 
@@ -32,15 +33,14 @@ const useLogin = () => {
     return null; 
   };
 
-
-  const handleSignup = () =>{
-
+  const handleSignup = () => {
     setShowSplash(true);
-    navigate('/signup')
+    navigate('/signup');
+  };
 
-  }
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
   const handleLogin = async (e) => {
     e.preventDefault();
   
@@ -51,6 +51,9 @@ const useLogin = () => {
     }
   
     try {
+      setLoading(true); // Set loading to true when the login process starts
+      setShowSplash(true); // Show splash screen while loading
+
       console.log('Sending request to backend...');
       const response = await fetch('http://192.168.4.174:5000/login', {
         method: 'POST',
@@ -77,17 +80,23 @@ const useLogin = () => {
     } catch (error) {
       console.error('Fetch error:', error);
       setError('Something went wrong. Please try again later.');
+    } finally {
+      setLoading(false); // Reset loading state after request
+      setShowSplash(false); // Hide splash screen after loading is complete
     }
   };
+
   return {
     username,
     password,
     error,
     showSplash,
+    loading, // Return loading state
     handleLogin,
     handleUsernameChange,
     handlePasswordChange,
     handleSignup
+  };
 };
-}
+
 export default useLogin;
