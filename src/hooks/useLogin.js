@@ -31,24 +31,49 @@ const useLogin = () => {
     }
     return null; 
   };
+
+
+  const handleSignup = () =>{
+
+    setShowSplash(true);
+    navigate('/signup')
+
+  }
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     const formError = validateForm();
     if (formError) {
       setError(formError);
       return;
     }
-    if (username === 'admin' && password === 'admin123') {
-      setShowSplash(true);
-      setLogged(true);
-      setTimeout(() => navigate('/home/dashboard'), 1000);
-    } else {
-      setError('Invalid username or password');
-      setLogged(false); 
+  
+    try {
+      console.log('Sending request to backend...');
+      const response = await fetch('http://192.168.4.174:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      const data = await response.json();
+      console.log('Response data:', data);
+  
+      if (response.ok) {
+        setShowSplash(true);
+        setLogged(true);
+        setTimeout(() => navigate('/home/dashboard'), 1000);
+      } else {
+        setError(data.error || 'Login failed');
+        setLogged(false);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setError('Something went wrong. Please try again later.');
     }
   };
   return {
@@ -59,6 +84,7 @@ const useLogin = () => {
     handleLogin,
     handleUsernameChange,
     handlePasswordChange,
-  };
+    handleSignup
 };
+}
 export default useLogin;

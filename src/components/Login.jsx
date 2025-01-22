@@ -14,6 +14,7 @@ const Login = () => {
     handleLogin,
     handleUsernameChange,
     handlePasswordChange,
+    handleSignup
   } = useLogin();
 
 
@@ -39,7 +40,6 @@ const Login = () => {
               <h2 className="fw-bold">Welcome back</h2>
               <p className="text-muted">Please sign in to your account</p>
             </div>
-
             <form onSubmit={handleLogin}>
               <div className="mb-4">
                 <div className="input-group">
@@ -55,7 +55,6 @@ const Login = () => {
                   />
                 </div>
               </div>
-
               <div className="mb-4">
                 <div className="input-group">
                   <span className="input-group-text border-end-0 bg-transparent">
@@ -81,6 +80,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
+            <p> dont have an account yet ? <span><button className='btn btn-link text-primary  ' onClick={handleSignup}>signup now</button></span> </p> 
           </div>
         </div>
       )}

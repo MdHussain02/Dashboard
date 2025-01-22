@@ -16,6 +16,7 @@ import Page10 from './components/Page10';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Dashboard from './components/Dashboard';
+import Signup from './components/Signup';
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path='/signup' element={<Signup/>}/>
           <Route path="/home" element={<Home />}>
             {/* Child routes are now relative */}
             <Route path="dashboard" element={<Dashboard/>} />
