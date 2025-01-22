@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { isLoggedInState } from '../atoms/authAtom';
+import useAuth from '../hooks/useAuth'; // Import the custom useAuth hook
+
 const useLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,16 +9,16 @@ const useLogin = () => {
   const [showSplash, setShowSplash] = useState(false);
   const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
-  const [logged, setLogged] = useRecoilState(isLoggedInState);
+  const { isLoggedIn, logIn } = useAuth(); // Use the useAuth hook
 
   useEffect(() => {
-    if (logged === true) {
+    if (isLoggedIn) {
       setShowSplash(true);
       setTimeout(() => navigate('/home/dashboard'), 100);
     } else {
       setShowSplash(false);
     }
-  }, [logged, navigate]);
+  }, [isLoggedIn, navigate]);
 
   const handleSignup = () => {
     setShowSplash(true);
@@ -56,12 +56,11 @@ const useLogin = () => {
       if (response.ok) {
         // Save the JWT token in localStorage or cookies for future authentication
         localStorage.setItem('authToken', data.token);
-        setLogged(true);
+        logIn(); // Log the user in using the custom hook
         setShowSplash(true);
         navigate('/home/dashboard');
       } else {
         setError(data.error || 'Login failed');
-        setLogged(false);
       }
     } catch (error) {
       console.error('Fetch error:', error);
