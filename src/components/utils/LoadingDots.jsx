@@ -37,6 +37,7 @@ const styles = `
   }
 
   .dot {
+    background-color: rgba(0, 81, 255, 0.5);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
     animation: bounce 1.5s ease-in-out infinite;
@@ -53,6 +54,7 @@ const styles = `
     }
   }
 `;
+
 
 // Inject styles when in browser environment
 if (typeof document !== 'undefined') {

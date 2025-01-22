@@ -5,7 +5,7 @@ import '../styles/Login.css';
 import useLogin from '../hooks/useLogin';
 import useAuth from '../hooks/useAuth';
 import { Navigate} from 'react-router-dom';
-import LoadingDots from './LoadingDots';
+import LoadingDots from './utils/LoadingDots';
 const Login = () => {
   const { isLoggedIn } = useAuth();
   const {
@@ -77,9 +77,7 @@ const Login = () => {
               </button>
             </div>
           </form>
-
           {loading && <LoadingDots className="mt-3 m-2" dotSize={12} gap={8} />}
-
           <p> don't have an account yet? <span><button className='btn btn-link text-primary' onClick={handleSignup}>signup now</button></span> </p> 
         </div>
       </div>

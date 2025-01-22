@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';  
-import useUser from "../hooks/useUser"; 
-import useFinanceData from "../hooks/useFinanceData";
+import useUser from "../../hooks/useUser";
+import useFinanceData from "./hooks/useFinanceData";
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
@@ -12,61 +12,17 @@ const FinanceChart = () => {
   const { chartData, error } = useFinanceData(username, currentYear);
 
   return (
-    <div className="chart-container">
-      <style>
-        {`
-          .chart-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          }
-
-          .chart-header {
-            margin-bottom: 20px;
-          }
-
-          .chart-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-          }
-
-          .chart-content {
-            height: 400px;
-            position: relative;
-          }
-
-          .loading, .error {
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-          }
-
-          .error {
-            color: #dc2626;
-          }
-
-          .loading {
-            color: #666;
-          }
-        `}
-      </style>
-
-      <div className="chart-header">
-        <h2 className="chart-title text-muted">{username} - Monthly Financial Overview - {currentYear}</h2>
+    <div style={{width:"1000px", height : "700px"}}>
+      <div className="">
+        <h2 className=" text-muted">{username} - Monthly Financial Overview - {currentYear}</h2>
       </div>
 
       {error ? (
-        <div className="error">{`Error: ${error.message}`}</div>
+        <div className="">{`Error: ${error.message}`}</div>
       ) : !chartData ? (
-        <div className="loading">No chart Availabe for {username}</div>
+        <div className="">No chart Availabe for {username}</div>
       ) : (
-        <div className="chart-content">
+        <div className="">
           <Line
             data={chartData}
             options={{
