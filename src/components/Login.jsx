@@ -3,15 +3,16 @@ import { User, Lock, LogIn, Eye, EyeOff } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
 import useLogin from '../hooks/useLogin';
-
-import LoadingDots from './LoadingDots'; // Import the LoadingDots component
-
+import useAuth from '../hooks/useAuth';
+import { Navigate} from 'react-router-dom';
+import LoadingDots from './LoadingDots';
 const Login = () => {
+  const { isLoggedIn } = useAuth();
   const {
     username,
     password,
     error,
-    loading, // Destructure loading state
+    loading, 
     handleLogin,
     handleUsernameChange,
     handlePasswordChange,
@@ -26,6 +27,7 @@ const Login = () => {
 
   return (
     <div className="login-container vh-100 d-flex align-items-center justify-content-center">
+      {isLoggedIn && <Navigate to="/home/dashboard" />}
       <div className="login-card card border-0 shadow-lg">
         <div className="card-body p-5">
           <div className="text-center mb-4">

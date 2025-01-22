@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth'; // Import the custom useAuth hook
 
@@ -9,38 +9,22 @@ const useLogin = () => {
   const [showSplash, setShowSplash] = useState(false);
   const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
-  const { isLoggedIn, logIn } = useAuth(); // Use the useAuth hook
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      setShowSplash(true);
-      setTimeout(() => navigate('/home/dashboard'), 100);
-    } else {
-      setShowSplash(false);
-    }
-  }, [isLoggedIn, navigate]);
-
+  const {  logIn } = useAuth(); // Use the useAuth hook
   const handleSignup = () => {
     setShowSplash(true);
     navigate('/signup');
   };
-
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
   const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    // Directly check if username and password are provided
+    e.preventDefault();    
     if (!username || !password) {
       setError('Username and password are required.');
       return;
     }
-  
     try {
       setLoading(true); // Set loading to true when the login process starts
       setShowSplash(true); // Show splash screen while loading
-
       console.log('Sending request to backend...');
       const response = await fetch('http://192.168.4.174:5000/login', {
         method: 'POST',
