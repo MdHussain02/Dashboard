@@ -36,9 +36,9 @@ const FinanceForm = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className=" mt-5">
       <h2 className="text-center mb-4">Monthly Finance Form</h2>
-      <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm bg-light">
+      <form onSubmit={handleSubmit} className="border p-3 rounded shadow-sm bg-light w-50 mx-auto">
         <div className="mb-3">
           <label htmlFor="month" className="form-label">Month:</label>
           <select
@@ -67,11 +67,11 @@ const FinanceForm = () => {
         <div className="mb-3">
           <label htmlFor="income" className="form-label">Income:</label>
           <input
-            type="text"  // Using text input for numbers
+            type="text"
             id="income"
             className="form-control"
             value={income}
-            onChange={(e) => setIncome(e.target.value)} // Allow typing numbers
+            onChange={(e) => setIncome(e.target.value)}
             required
             placeholder="Enter Income"
           />
@@ -80,11 +80,11 @@ const FinanceForm = () => {
         <div className="mb-3">
           <label htmlFor="expenses" className="form-label">Expenses:</label>
           <input
-            type="text"  // Using text input for numbers
+            type="text"
             id="expenses"
             className="form-control"
             value={expenses}
-            onChange={(e) => setExpenses(e.target.value)} // Allow typing numbers
+            onChange={(e) => setExpenses(e.target.value)}
             required
             placeholder="Enter Expenses"
           />
@@ -93,11 +93,11 @@ const FinanceForm = () => {
         <div className="mb-3">
           <label htmlFor="savings" className="form-label">Savings:</label>
           <input
-            type="text"  // Using text input for numbers
+            type="text"
             id="savings"
             className="form-control"
             value={savings}
-            onChange={(e) => setSavings(e.target.value)} // Allow typing numbers
+            onChange={(e) => setSavings(e.target.value)}
             required
             placeholder="Enter Savings"
           />
