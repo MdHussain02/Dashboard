@@ -49,8 +49,8 @@
   }
   
   .sidebar-link.active {
-    background-color: #a6c7f7;
-    color: #0055f3 !important;
+    background-color: #006eff;
+    color: #ffffff !important;
     font-weight: 500;
     border-radius: 20px;
   }
@@ -60,10 +60,10 @@
     height: 20px;
   }
   
-  .nav-icon.active {
-    color: #0d6efd;
+  /* .nav-icon.active {
+    color: #0dfd2d;
   }
-  
+   */
   .content-area {
     flex: 1;
     padding: 2rem;
