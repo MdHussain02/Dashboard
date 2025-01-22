@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { isLoggedInState } from "../atoms/authAtom";
+import useAuth from "../hooks/useAuth";
 import CustomModal from "./CustomModal";
 
 const Sidebar = ({ pages, handleNavigation, isActivePage }) => {
+  const { isLoggedIn, logOut } = useAuth(); // Using the custom hook
   const navigate = useNavigate();
-  const [logged, setLogged] = useRecoilState(isLoggedInState);
   const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
-    setLogged(false);
+    logOut();
     navigate("/");
   };
 
@@ -20,7 +19,6 @@ const Sidebar = ({ pages, handleNavigation, isActivePage }) => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-
     <div className="sidebar">
       <Nav className="flex-column m-2">
         {pages.map((page) => {
@@ -38,15 +36,14 @@ const Sidebar = ({ pages, handleNavigation, isActivePage }) => {
             </div>
           );
         })}
-        {logged&&(
-        <Nav.Link onClick={handleShowModal} className="sidebar-link-out mt-2">
-          <LogOut className="nav-icon" />
-          <span className="nav-label ms-1">Logout</span>
-        </Nav.Link>
-        )
-        }
+        {isLoggedIn && (
+          <Nav.Link onClick={handleShowModal} className="sidebar-link-out mt-2">
+            <LogOut className="nav-icon" />
+            <span className="nav-label ms-1">Logout</span>
+          </Nav.Link>
+        )}
       </Nav>
-      <CustomModal 
+      <CustomModal
         isOpen={showModal}
         onClose={handleCloseModal}
         onConfirm={handleLogout}

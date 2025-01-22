@@ -5,7 +5,6 @@ import Sidebar from "./Sidebar";
 import ContentArea from "./ContentArea";
 import { useNavigation } from "../hooks/useNavigation";
 import { useNavigate } from "react-router-dom";
-import GlobalAuthGuard from "../components/GlobalAuthGuard";
 import {
   Home as HomeIcon,
   Settings,
@@ -39,7 +38,6 @@ const Home = () => {
   const isAnyPageActive = pages.some((page) => isActivePage(page.route));
 
   return (
-    <GlobalAuthGuard>
       <div className="app-container">
         {/* Header */}
         <Header />
@@ -56,7 +54,6 @@ const Home = () => {
           <ContentArea isAnyPageActive={isAnyPageActive} />
         </div>
       </div>
-    </GlobalAuthGuard>
   );
 };
 
