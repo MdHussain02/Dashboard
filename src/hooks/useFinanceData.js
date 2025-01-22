@@ -14,7 +14,7 @@ const useFinanceData = (username, year) => {
   ];
 
   const { data, error } = useSWR(
-    username ? `http://192.168.4.174:5000/getfinancedata?username=${username}&year=${year}` : null,
+    username ? `http://localhost:5000/getfinancedata?username=${username}&year=${year}` : null,
     fetchFinanceData
   );
 

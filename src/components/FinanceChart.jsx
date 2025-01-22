@@ -64,7 +64,7 @@ const FinanceChart = () => {
       {error ? (
         <div className="error">{`Error: ${error.message}`}</div>
       ) : !chartData ? (
-        <div className="loading">Loading...</div>
+        <div className="loading">No chart Availabe for {username}</div>
       ) : (
         <div className="chart-content">
           <Line

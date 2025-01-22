@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
-import Page2 from './components/Page2';
+import Analytics from './components/Analytics';
 import Page3 from './components/Page3';
 import Page4 from './components/Page4';
 import Page5 from './components/Page5';
@@ -38,7 +38,7 @@ function App() {
               }
             >
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="page2" element={<Page2 />} />
+              <Route path="Analytics" element={<Analytics/>} />
               <Route path="page3" element={<Page3 />} />
               <Route path="page4" element={<Page4 />} />
               <Route path="page5" element={<Page5 />} />

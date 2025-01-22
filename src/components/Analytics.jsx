@@ -1,7 +1,7 @@
 import React from 'react'
 import FinanceForm from './FinanceForm'
 
-function Page2() {
+function Analytics() {
   return (
     <div>
       <FinanceForm/>
@@ -9,4 +9,4 @@ function Page2() {
   )
 }
 
-export default Page2
+export default Analytics;

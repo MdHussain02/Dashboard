@@ -19,7 +19,7 @@ const Home = () => {
   const pages = [
     { id: "Dashboard", name: "Dashboard", icon: HomeIcon, route: "dashboard" },
     { id: "profile", name: "Profile", icon: User2Icon, route: "profile" },
-    { id: "Page2", name: "Analytics", icon: BarChart, route: "page2" },
+    { id: "Analytics", name: "Analytics", icon: BarChart, route: "Analytics" },
     { id: "Page3", name: "Users", icon: Users, route: "page3" },
     { id: "Page4", name: "Messages", icon: Mail, route: "page4" },
     { id: "Page5", name: "Settings", icon: Settings, route: "page5" },

@@ -28,7 +28,7 @@ const FinanceForm = () => {
     };
 
     try {
-      const response = await axios.post('http://192.168.4.174:5000/add-finance', financeData);
+      const response = await axios.post('http://localhost:5000/add-finance', financeData);
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response?.data?.error || 'Error submitting data.');
