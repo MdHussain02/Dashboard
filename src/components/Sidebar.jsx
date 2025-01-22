@@ -22,7 +22,7 @@ const Sidebar = ({ pages, handleNavigation, isActivePage }) => {
   return (
 
     <div className="sidebar">
-      <Nav className="flex-column">
+      <Nav className="flex-column m-2">
         {pages.map((page) => {
           const Icon = page.icon;
           const isActive = isActivePage(page.route);

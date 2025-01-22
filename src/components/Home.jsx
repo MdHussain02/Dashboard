@@ -19,13 +19,13 @@ import {
 const Home = () => {
   const pages = [
     { id: "Dashboard", name: "Dashboard", icon: HomeIcon, route: "dashboard" },
+    { id: "profile", name: "Profile", icon: User2Icon, route: "profile" },
     { id: "Page2", name: "Analytics", icon: BarChart, route: "page2" },
     { id: "Page3", name: "Users", icon: Users, route: "page3" },
     { id: "Page4", name: "Messages", icon: Mail, route: "page4" },
     { id: "Page5", name: "Settings", icon: Settings, route: "page5" },
     { id: "Page6", name: "Reports", icon: ChartBar, route: "page6" },
     { id: "Page7", name: "Notifications", icon: Mail, route: "page7" },
-    { id: "Page8", name: "Profile", icon: User2Icon, route: "page8" },
     { id: "Page9", name: "Help", icon: HelpCircle, route: "page9" },
     { id: "Page10", name: "Feedback", icon: Pen, route: "page10" },
   ];

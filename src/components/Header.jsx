@@ -22,7 +22,7 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Brand className="d-flex align-items-center" onClick={handleShowPopup}>
             <User2Icon className="brand-icon" />
-            <span className="ms-2 ">{username}</span>
+            <span className="ms-2 text text-primary" style={{ fontSize: '0.85rem' }}>{username}</span>
           </Navbar.Brand>
         </Container>
       </Navbar>

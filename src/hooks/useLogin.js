@@ -20,19 +20,6 @@ const useLogin = () => {
     }
   }, [logged, navigate]);
 
-  const validateForm = () => {
-    if (!username.trim()) {
-      return 'Username cannot be empty';
-    } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
-      return 'Username must be alphanumeric';
-    } else if (!password.trim()) {
-      return 'Password cannot be empty';
-    } else if (password.length < 6) {
-      return 'Password must be at least 6 characters';
-    }
-    return null; 
-  };
-
   const handleSignup = () => {
     setShowSplash(true);
     navigate('/signup');
@@ -43,10 +30,10 @@ const useLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    const formError = validateForm();
-    if (formError) {
-      setError(formError);
+    
+    // Directly check if username and password are provided
+    if (!username || !password) {
+      setError('Username and password are required.');
       return;
     }
   
@@ -69,10 +56,9 @@ const useLogin = () => {
       if (response.ok) {
         // Save the JWT token in localStorage or cookies for future authentication
         localStorage.setItem('authToken', data.token);
-  
-        setShowSplash(true);
         setLogged(true);
-        setTimeout(() => navigate('/home/dashboard'), 1000);
+        setShowSplash(true);
+        navigate('/home/dashboard');
       } else {
         setError(data.error || 'Login failed');
         setLogged(false);

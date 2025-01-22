@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { User as UserIcon} from "lucide-react"; // Importing icons
+import { User as UserIcon } from "lucide-react"; // Importing icons
 
-const UserDetailsPopup = ({ show, onClose, username}) => {
+const UserDetailsPopup = ({ show, onClose, username }) => {
   const popupRef = React.useRef();
 
   useEffect(() => {
@@ -32,18 +32,25 @@ const UserDetailsPopup = ({ show, onClose, username}) => {
             border: "1px solid #ddd",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             borderRadius: "8px",
-            width: "250px", // Adjust width as needed
+            width: "350px", // Adjust width as needed
             zIndex: 9999, // Ensure it's on top of all other content
             height: "auto", // Adjust the height
             overflow: "hidden",
           }}
         >
-          <div style={{ marginBottom: "10px" }}>
-            <h5 style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ marginBottom: "10px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <h5 style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <UserIcon size={20} style={{ marginRight: "8px" }} />
-              <span>{username}</span>
+              <span className="text text-primary">{username}</span>
             </h5>
           </div>
+          <div >
+            <h6  style={{ fontSize: '0.85rem' }}>
+              Email : 
+              <span> {username}@gmail.com</span>
+            </h6>
+          </div>
+
         </div>
       )}
     </>

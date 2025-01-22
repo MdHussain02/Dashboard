@@ -1,6 +1,7 @@
 // hooks/useSignup.js
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { validateForm } from '../utils/validation'; // Import the common validation function
 
 const useSignup = () => {
   const [username, setUsername] = useState('');
@@ -17,27 +18,17 @@ const useSignup = () => {
     setShowPassword(!showPassword);
   };
 
-  const validateForm = () => {
-    if (!username.trim()) {
-      return 'Username cannot be empty';
-    } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
-      return 'Username must be alphanumeric';
-    } else if (!password.trim()) {
-      return 'Password cannot be empty';
-    } else if (password.length < 6) {
-      return 'Password must be at least 6 characters';
-    } else if (password !== confirmPassword) {
-      return 'Passwords do not match';
-    }
-    return null;
-  };
-
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const formError = validateForm();
+    // Reuse the common validation function
+    const formError = validateForm(username, password);
     if (formError) {
-      setError(formError);
+      if (password !== confirmPassword) {
+        setError('Passwords do not match');
+      } else {
+        setError(formError);
+      }
       setSuccess('');
       return;
     }

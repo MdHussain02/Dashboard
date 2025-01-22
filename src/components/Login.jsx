@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { User, Lock, LogIn, Eye, EyeOff } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
-import SplashScreen from './SplashScreen';
 import useLogin from '../hooks/useLogin';
 
 import LoadingDots from './LoadingDots'; // Import the LoadingDots component
