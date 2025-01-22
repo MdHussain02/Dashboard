@@ -1,74 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import React from 'react';
+import { Line } from 'react-chartjs-2';  
 import useUser from "../hooks/useUser"; 
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import useFinanceData from "../hooks/useFinanceData";
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 const FinanceChart = () => {
-  const [chartData, setChartData] = useState({
-    labels: [], // Initialize with empty arrays
-    datasets: []
-  });
-  const {username} = useUser();
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-          const username = 'admin123
-          '; // Replace this with the actual username you want to fetch data for
-          const response = await axios.get(`http://localhost:5000/getfinancedata?username=${username}`);
-          const userFinanceData = response.data;
-      
-          console.table(userFinanceData);
-      
-          if (userFinanceData && userFinanceData.length > 0) {
-            const months = userFinanceData.map(data => data.month);
-            const incomes = userFinanceData.map(data => data.income);
-            const expenses = userFinanceData.map(data => data.expenses);
-            const savings = userFinanceData.map(data => data.savings);
-      
-            setChartData({
-              labels: months,
-              datasets: [
-                {
-                  label: 'Income',
-                  data: incomes,
-                  borderColor: 'green',
-                  backgroundColor: 'rgba(0, 255, 0, 0.1)',
-                  fill: true,
-                },
-                {
-                  label: 'Expenses',
-                  data: expenses,
-                  borderColor: 'red',
-                  backgroundColor: 'rgba(255, 0, 0, 0.1)',
-                  fill: true,
-                },
-                {
-                  label: 'Savings',
-                  data: savings,
-                  borderColor: 'blue',
-                  backgroundColor: 'rgba(0, 0, 255, 0.1)',
-                  fill: true,
-                },
-              ],
-            });
-          } else {
-            console.log("No finance data found");
-          }
-        } catch (error) {
-          console.error('Error fetching finance data:', error);
-        }
-      };      
-
-    fetchData();
-  }, []);
+  const { username } = useUser();
+  const currentYear = new Date().getFullYear();
+  const { chartData, error } = useFinanceData(username, currentYear);
 
   return (
-    <div>
-      <h2>Monthly Finance Overview</h2>
-      <Line data={chartData} />
+    <div className="chart-container">
+      <style>
+        {`
+          .chart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+
+          .chart-header {
+            margin-bottom: 20px;
+          }
+
+          .chart-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+          }
+
+          .chart-content {
+            height: 400px;
+            position: relative;
+          }
+
+          .loading, .error {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+          }
+
+          .error {
+            color: #dc2626;
+          }
+
+          .loading {
+            color: #666;
+          }
+        `}
+      </style>
+
+      <div className="chart-header">
+        <h2 className="chart-title text-muted">{username} - Monthly Financial Overview - {currentYear}</h2>
+      </div>
+
+      {error ? (
+        <div className="error">{`Error: ${error.message}`}</div>
+      ) : !chartData ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <div className="chart-content">
+          <Line
+            data={chartData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                title: {
+                  display: true,
+                  font: {
+                    size: 18,
+                    weight: 'bold',
+                  },
+                },
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      return `${tooltipItem.dataset.label}: $${tooltipItem.raw.toLocaleString()}`;
+                    },
+                  },
+                },
+                legend: {
+                  position: 'top',
+                },
+              },
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Month',
+                  },
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Amount ($)',
+                  },
+                  beginAtZero: true,
+                  ticks: {
+                    callback: (value) => `$${value.toLocaleString()}`,
+                  },
+                },
+              },
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
