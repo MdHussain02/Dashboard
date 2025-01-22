@@ -34,7 +34,7 @@ const Home = () => {
   const currentPage = pages.find((page) => isActivePage(page.route));
 
   if (!currentPage) {
-    navigate(`/home/dashboard`);
+    navigate(`/home/${pages[0].route}`);
   }
   const isAnyPageActive = pages.some((page) => isActivePage(page.route));
 

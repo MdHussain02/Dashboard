@@ -13,7 +13,7 @@ const useLogin = () => {
   useEffect(() => {
     if (logged === true) {
       setShowSplash(true);
-      setTimeout(() => navigate('/home/page1'), 100);
+      setTimeout(() => navigate('/home/dashboard'), 100);
     } else {
       setShowSplash(false);
     }
@@ -45,7 +45,7 @@ const useLogin = () => {
     if (username === 'admin' && password === 'admin123') {
       setShowSplash(true);
       setLogged(true);
-      setTimeout(() => navigate('/home/page1'), 1000);
+      setTimeout(() => navigate('/home/dashboard'), 1000);
     } else {
       setError('Invalid username or password');
       setLogged(false); 
