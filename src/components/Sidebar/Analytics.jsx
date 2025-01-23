@@ -4,6 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import useFinanceData from "../../hooks/useFinanceDatas";
 import PolarAreaChart from '../Charts/PolarAreaChart';
 import RadarChart from "../Charts/RadarChart";
+import HorizontalBarChart from '../Charts/HorizontalBarChart';
 
 ChartJS.register(
   CategoryScale,
@@ -84,6 +85,7 @@ const Analytics = () => {
       <div className='mt-2 d-flex'>
         <PolarAreaChart />
         <RadarChart />
+        <HorizontalBarChart/>
       </div>
     </div>
   );
