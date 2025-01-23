@@ -1,7 +1,12 @@
-import React from 'react';
+import React from 'react'
+import FinanceDataDisplay from '../FinanceDataDisplay'
 
 function Users() {
-  return <h2 className='text-muted'> Page 3</h2>
+  return (
+    <div>
+      <FinanceDataDisplay/>
+    </div>
+  )
 }
 
-export default Users;
+export default Users

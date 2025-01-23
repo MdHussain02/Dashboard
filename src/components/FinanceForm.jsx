@@ -1,10 +1,11 @@
 import React from "react";
-import useFinance from "../hooks/useFinance"; // Import the custom hook
+import { toast } from "react-toastify";  // Import the toast function
+import useFinance from "../hooks/useFinanceForm"; // Import the custom hook
+import { ToastContainer } from "react-toastify"; // Import ToastContainer for rendering toasts
 
 const FinanceForm = () => {
   const {
     financeData,
-    message,
     months,
     handleInputChange,
     handleAddRow,
@@ -12,6 +13,31 @@ const FinanceForm = () => {
     handleDeleteRow,
     error,
   } = useFinance(); // Use the custom hook
+
+  const handleSave = (index) => {
+    const currentMonth = financeData[index].month;
+    
+    // Check if the month already exists in the table (excluding the current row)
+    const isMonthDuplicate = financeData.some((row, idx) => row.month === currentMonth && idx !== index);
+    
+    if (isMonthDuplicate) {
+      toast.warn("Month already exists! Please select a different month.");  // Show warning toast
+      return;
+    }
+
+    handleSaveRow(index);
+    toast.success("Row saved successfully!");  // Show success toast on save
+  };
+
+  const handleDelete = (index) => {
+    handleDeleteRow(index);
+    toast.error("Row deleted successfully!");  // Show error toast on delete
+  };
+
+  const handleAdd = () => {
+    handleAddRow();
+    toast.info("New row added!");  // Show info toast on add
+  };
 
   if (error) {
     return <p>Error loading data.</p>;
@@ -78,10 +104,10 @@ const FinanceForm = () => {
                 />
               </td>
               <td>
-                <button className="btn btn-success btn-sm me-2" onClick={() => handleSaveRow(index)}>
+                <button className="btn btn-success btn-sm me-2" onClick={() => handleSave(index)}>
                   Save
                 </button>
-                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteRow(index)}>
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>
                   Delete
                 </button>
               </td>
@@ -89,10 +115,13 @@ const FinanceForm = () => {
           ))}
         </tbody>
       </table>
-      <button className="btn btn-primary " style={{width:"150px"}} onClick={handleAddRow}>
+      <button className="btn btn-primary" style={{ width: "150px" }} onClick={handleAdd}>
         Add Row
       </button>
-      {message && <p className="mt-3 text-center text-muted">{message}</p>}
+      {/* {message && <p className="mt-3 text-center text-muted">{message}</p>} */}
+      
+      {/* Add ToastContainer to render toasts */}
+      <ToastContainer />
     </div>
   );
 };

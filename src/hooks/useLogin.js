@@ -26,7 +26,7 @@ const useLogin = () => {
       setLoading(true); 
       setShowSplash(true); 
       console.log('Sending request to backend...');
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://192.168.4.174:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

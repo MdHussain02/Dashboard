@@ -1,21 +1,20 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import useUser from "../../hooks/useUser";
-import useFinanceData from "./hooks/useFinanceData";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import useFinanceData from "../../hooks/useFinanceDatas";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const FinancePieChart = () => {
-  const { username } = useUser();
-  const currentYear = new Date().getFullYear();
-  const { chartData, error } = useFinanceData(username, currentYear);
+  const { financeData, error } = useFinanceData();
 
-  const totals = chartData
-    ? chartData.datasets.reduce(
-        (acc, dataset) => {
-          const key = dataset.label.toLowerCase();
-          acc[key] = dataset.data.reduce((sum, value) => sum + value, 0);
+  // Calculate totals for income, expenses, and savings
+  const totals = financeData
+    ? Object.values(financeData).reduce(
+        (acc, { income, expenses, savings }) => {
+          acc.income += income;
+          acc.expenses += expenses;
+          acc.savings += savings;
           return acc;
         },
         { income: 0, expenses: 0, savings: 0 }
@@ -35,10 +34,10 @@ const FinancePieChart = () => {
   };
 
   return (
-    <div className='mt-5'  style={{ width: '100%', maxWidth: '300px', margin: 'auto' }}>
+    <div className='mt-5' style={{ width: '100%', maxWidth: '300px', margin: 'auto' }}>
       {error ? (
         <div className="text-danger">{`Error: ${error.message}`}</div>
-      ) : !chartData ? (
+      ) : !financeData ? (
         <div>No Data</div>
       ) : (
         <Pie
@@ -60,6 +59,7 @@ const FinancePieChart = () => {
           }}
         />
       )}
+      <p className='text-center text-muted'>Expenses : {totals.expenses.toLocaleString()} </p>
     </div>
   );
 };

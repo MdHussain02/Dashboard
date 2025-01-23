@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import useSWR from "swr";
 import axios from "axios";
-import useUser from "../hooks/useUser"; // Import the custom hook
+import useUser from "./useUser"; // Import the custom hook
 
 // Define the fetcher function for SWR
 const fetcher = (url) => axios.get(url).then((res) => res.data);
@@ -19,7 +19,7 @@ const useFinance = () => {
 
   // Use SWR for data fetching
   const { data, error, mutate } = useSWR(
-    `http://localhost:5000/getfinancedata?username=${username}`,
+    `http://192.168.4.174:5000/getfinancedata?username=${username}`,
     fetcher
   );
 
@@ -65,12 +65,12 @@ const useFinance = () => {
 
     try {
       if (row.isNew) {
-        await axios.post("http://localhost:5000/add-finance", {
+        await axios.post("http://192.168.4.174:5000/add-finance", {
           username,
           ...row,
         });
       } else {
-        await axios.put("http://localhost:5000/update-finance", {
+        await axios.put("http://192.168.4.174:5000/update-finance", {
           username,
           ...row,
         });
@@ -95,7 +95,7 @@ const useFinance = () => {
     }
 
     try {
-      await axios.delete("http://localhost:5000/delete-finance", {
+      await axios.delete("http://192.168.4.174:5000/delete-finance", {
         data: { username, month: row.month },
       });
 
