@@ -2,9 +2,9 @@ import React from 'react';
 import { Bubble } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BubbleController, Title, Tooltip, Legend } from 'chart.js';
 import useFinanceData from "../../hooks/useFinanceDatas";
-import PolarAreaChart from '../Charts/PolarAreaChart';
 import RadarChart from "../Charts/RadarChart";
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
+import DoughnutChart from '../Charts/DoughnutChart';
 
 ChartJS.register(
   CategoryScale,
@@ -98,7 +98,7 @@ const Analytics = () => {
       <h2>Financial Analytics</h2>
       <Bubble data={bubbleData} options={options} />
       <div className='mt-2 d-flex'>
-        <PolarAreaChart />
+        <DoughnutChart/>
         <RadarChart />
         <HorizontalBarChart/>
       </div>

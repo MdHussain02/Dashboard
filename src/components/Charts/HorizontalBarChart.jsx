@@ -62,7 +62,7 @@ const HorizontalBarChart = () => {
 
   return (
     <div>
-      <div >
+      <div style={{width:"500px"}} >
         <Bar data={chartData} options={options} />
         <p className="text-center text-muted">Minimu and maximum savings</p>
       </div>
