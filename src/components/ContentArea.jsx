@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import "./ContentArea.css";  // Import the custom CSS for the scrollbar
+import "../styles/ContentArea.css";  // Import the custom CSS for the scrollbar
 
 const ContentArea = ({ isAnyPageActive }) => {
   return (
