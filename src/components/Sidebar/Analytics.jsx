@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import useFinanceData from "../../hooks/useFinanceDatas";
 import PolarAreaChart from '../Charts/PolarAreaChart';
+import RadarChart from "../Charts/RadarChart";
 
 ChartJS.register(
   CategoryScale,
@@ -75,13 +76,14 @@ const Analytics = () => {
   return (
     <div style={{ 
       width: '100%', 
-      maxWidth: '800px', 
+      // maxWidth: '800px', 
       margin: '0 auto'
     }}>
       <h2>Financial Analytics</h2>
       <Line data={lineData} options={options} />
-      <div className='mt-2'>
+      <div className='mt-2 d-flex'>
         <PolarAreaChart />
+        <RadarChart />
       </div>
     </div>
   );
