@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';  
+import { Line } from 'react-chartjs-2';
 import useUser from "../../hooks/useUser";
 import useFinanceData from "./hooks/useFinanceData";
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
@@ -12,65 +12,60 @@ const FinanceChart = () => {
   const { chartData, error } = useFinanceData(username, currentYear);
 
   return (
-    <div style={{width:"1000px", height : "700px"}}>
-      <div className="">
-        <h2 className=" text-muted">{username} - Monthly Financial Overview - {currentYear}</h2>
-      </div>
-
+    <div style={{ width: '100%', maxWidth: '100%' }}>
+      <h4 className="text-muted text-center mb-4">{`${username} - Monthly Financial Overview - ${currentYear}`}</h4>
       {error ? (
-        <div className="">{`Error: ${error.message}`}</div>
+        <div className="text-danger text-center">{`Error: ${error.message}`}</div>
       ) : !chartData ? (
-        <div className="">No chart Availabe for {username}</div>
+        <div className="text-center">No chart available for {username}</div>
       ) : (
-        <div className="">
-          <Line
-            data={chartData}
-            options={{
-              responsive: true,
-              maintainAspectRatio: true,
-              plugins: {
+        <Line
+          data={chartData}
+          options={{
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Monthly Financial Overview',
+                font: {
+                  size: 16,
+                  weight: 'bold',
+                },
+              },
+              tooltip: {
+                callbacks: {
+                  label: (tooltipItem) => {
+                    return `${tooltipItem.dataset.label}: $${tooltipItem.raw.toLocaleString()}`;
+                  },
+                },
+              },
+              legend: {
+                position: 'top',
+              },
+            },
+            scales: {
+              x: {
                 title: {
                   display: true,
-                  font: {
-                    size: 18,
-                    weight: 'bold',
-                  },
+                  text: 'Month',
                 },
-                tooltip: {
-                  callbacks: {
-                    label: (tooltipItem) => {
-                      return `${tooltipItem.dataset.label}: $${tooltipItem.raw.toLocaleString()}`;
-                    },
-                  },
-                },
-                legend: {
-                  position: 'top',
+                grid: {
+                  display: false,
                 },
               },
-              scales: {
-                x: {
-                  title: {
-                    display: true,
-                    text: 'Month',
-                  },
-                  grid: {
-                    display: false,
-                  },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Amount ($)',
                 },
-                y: {
-                  title: {
-                    display: true,
-                    text: 'Amount ($)',
-                  },
-                  beginAtZero: true,
-                  ticks: {
-                    callback: (value) => `$${value.toLocaleString()}`,
-                  },
+                beginAtZero: true,
+                ticks: {
+                  callback: (value) => `$${value.toLocaleString()}`,
                 },
               },
-            }}
-          />
-        </div>
+            },
+          }}
+        />
       )}
     </div>
   );

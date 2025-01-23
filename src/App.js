@@ -8,7 +8,7 @@ import Analytics from './components/Sidebar/Analytics';
 import Users from './components/Sidebar/Users';
 import Page4 from './components/Page4';
 import Page5 from './components/Page5';
-import Page6 from './components/Page6';
+import Finance from './components/Sidebar/Finance';
 import Page7 from './components/Page7';
 import Profile from './components/Sidebar/Profile';
 import Page9 from './components/Page9';
@@ -38,11 +38,11 @@ function App() {
               }
             >
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="finance" element={<Finance />} />
               <Route path="analytics" element={<Analytics/>} />
               <Route path="users" element={<Users />} />
               <Route path="page4" element={<Page4 />} />
               <Route path="page5" element={<Page5 />} />
-              <Route path="page6" element={<Page6 />} />
               <Route path="page7" element={<Page7 />} />
               <Route path="profile" element={<Profile />} />
               <Route path="page9" element={<Page9 />} />

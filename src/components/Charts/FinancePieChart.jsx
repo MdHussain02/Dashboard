@@ -11,11 +11,10 @@ const FinancePieChart = () => {
   const currentYear = new Date().getFullYear();
   const { chartData, error } = useFinanceData(username, currentYear);
 
-  // Calculate total values for Income, Expenses, and Savings
   const totals = chartData
     ? chartData.datasets.reduce(
         (acc, dataset) => {
-          const key = dataset.label.toLowerCase(); // income, expenses, or savings
+          const key = dataset.label.toLowerCase();
           acc[key] = dataset.data.reduce((sum, value) => sum + value, 0);
           return acc;
         },
@@ -36,36 +35,31 @@ const FinancePieChart = () => {
   };
 
   return (
-    <div style={{width:"300px" , height : "300px"} }>
+    <div className='mt-5'  style={{ width: '100%', maxWidth: '300px', margin: 'auto' }}>
       {error ? (
-        <div className="text text-danger">{`Error: ${error.message}`}</div>
+        <div className="text-danger">{`Error: ${error.message}`}</div>
       ) : !chartData ? (
-        <div>No Data </div>
+        <div>No Data</div>
       ) : (
-        <div className="chart-content">
-          <Pie
-            data={pieData}
-            options={{
-              responsive: true,
-              plugins: {
-                tooltip: {
-                  callbacks: {
-                    label: (tooltipItem) => {
-                      return `${tooltipItem.label}: $${tooltipItem.raw.toLocaleString()}`;
-                    },
+        <Pie
+          data={pieData}
+          options={{
+            responsive: true,
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: (tooltipItem) => {
+                    return `${tooltipItem.label}: $${tooltipItem.raw.toLocaleString()}`;
                   },
                 },
-                legend: {
-                  position: 'top',
-                },
               },
-            }}
-          />
-        </div>
+              legend: {
+                position: 'top',
+              },
+            },
+          }}
+        />
       )}
-      <div>
-        <p>Total Income: ${totals.income.toLocaleString()}</p>
-      </div>
     </div>
   );
 };
