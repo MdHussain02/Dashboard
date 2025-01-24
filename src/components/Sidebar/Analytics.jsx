@@ -32,7 +32,7 @@ const Analytics = () => {
         data: Object.values(financeData).map(({ income }, index) => ({
           x: index,  // Use index as x-axis
           y: income,  // y-axis value for income
-          r: Math.max(income / 200, 10)  // Ensure radius is large enough (minimum radius is 10)
+          r: Math.max(income / 500, 10)  // Ensure radius is large enough (minimum radius is 10)
         })),
         backgroundColor: 'rgba(75, 192, 192, 0.7)',  // Bubble color
       },
@@ -41,7 +41,7 @@ const Analytics = () => {
         data: Object.values(financeData).map(({ expenses }, index) => ({
           x: index,  // Use index as x-axis
           y: expenses,  // y-axis value for expenses
-          r: Math.max(expenses / 200, 10)  // Ensure radius is large enough
+          r: Math.max(expenses / 500, 10)  // Ensure radius is large enough
         })),
         backgroundColor: 'rgba(255, 99, 132, 0.7)',  // Bubble color
       },
@@ -50,7 +50,7 @@ const Analytics = () => {
         data: Object.values(financeData).map(({ savings }, index) => ({
           x: index,  // Use index as x-axis
           y: savings,  // y-axis value for savings
-          r: Math.max(savings / 200, 10)  // Ensure radius is large enough
+          r: Math.max(savings / 500, 10)  // Ensure radius is large enough
         })),
         backgroundColor: 'rgba(54, 162, 235, 0.7)',  // Bubble color
       },

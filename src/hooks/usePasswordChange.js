@@ -13,7 +13,7 @@ const usePasswordChange = (username) => {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   // API endpoint for password update
-  const passwordUpdateAPI = 'http://192.168.4.174:5000/update-password';
+  const passwordUpdateAPI = 'http://localhost:5000/update-password';
 
   // Function to toggle password visibility
   const togglePasswordVisibility = (field) => {
