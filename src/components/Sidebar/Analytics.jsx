@@ -5,6 +5,7 @@ import useFinanceData from "../../hooks/useFinanceDatas";
 import RadarChart from "../Charts/RadarChart";
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
 import DoughnutChart from '../Charts/DoughnutChart';
+import '../../styles/Chart.css'
 
 ChartJS.register(
   CategoryScale,
@@ -92,15 +93,22 @@ const Analytics = () => {
 
   return (
     <div style={{ 
-      width: '100%', 
-      margin: '0 auto'
+      maxwidth: '100%', 
     }}>
       <h2>Financial Analytics</h2>
+      <div style={{minHeight:"100%"}}className='mt-2 bubble-chart-container'>
       <Bubble data={bubbleData} options={options} />
-      <div className='mt-2 d-flex'>
+      </div>
+      <div className='mt-2 chart-container'>
+        <div className='horizontal-chart'>
         <DoughnutChart/>
+        </div>
+        <div className='radar-chart'>
         <RadarChart />
+        </div>
+        <div className='horizontal-chart'>
         <HorizontalBarChart/>
+        </div>
       </div>
     </div>
   );

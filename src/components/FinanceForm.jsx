@@ -103,11 +103,11 @@ const FinanceForm = () => {
                   onChange={(e) => handleInputChange(index, "savings", e.target.value)}
                 />
               </td>
-              <td>
+              <td className="d-flex">
                 <button className="btn btn-success btn-sm me-2" onClick={() => handleSave(index)}>
                   Save
                 </button>
-                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>
+                <button className="btn btn-danger btn-sm me-2" onClick={() => handleDelete(index)}>
                   Delete
                 </button>
               </td>

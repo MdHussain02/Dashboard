@@ -1,0 +1,19 @@
+
+
+
+.chart-container{
+  display: flex;
+}
+
+@media (max-width: 768px) {
+    .bubble-chart-container {
+      display: none;
+    }
+    .horizontal-chart{
+        display: none;
+    }
+
+    .chart-container{
+      display: block;
+    }
+  }

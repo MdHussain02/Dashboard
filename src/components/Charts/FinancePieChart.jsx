@@ -34,7 +34,7 @@ const FinancePieChart = () => {
   };
 
   return (
-    <div className='mt-5' style={{ width: '100%', maxWidth: '300px', margin: 'auto' }}>
+    <div className='mt-5' style={{ maxWidth: '300px', margin: 'auto' }}>
       {error ? (
         <div className="text-danger">{`Error: ${error.message}`}</div>
       ) : !financeData ? (

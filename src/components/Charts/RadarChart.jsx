@@ -45,7 +45,7 @@ const RadarChart = () => {
 
   return (
     <div>
-      <div style={{width:"500px"}} >
+      <div style={{maxwidth:"500px"}} >
         <Radar data={chartData} />
         <p className="text-center text-muted">Income vs Expenses</p>
       </div>

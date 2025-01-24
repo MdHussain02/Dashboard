@@ -51,7 +51,7 @@ const DoughnutChart = () => {
 
   return (
     <div>
-      <div style={{ width: "500px" }}>
+      <div style={{ maxWidth: "500px" }}>
         <Doughnut data={chartData} />
         <p className="text-center text-muted">Income vs Expenses vs Savings</p>
       </div>

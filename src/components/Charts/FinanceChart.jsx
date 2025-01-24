@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 import useFinanceData from "../../hooks/useFinanceDatas";
-
+import '../../styles/Chart.css'
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 const FinanceChart = () => {
@@ -46,53 +46,55 @@ const FinanceChart = () => {
       ) : !financeData ? (
         <div className="text-center">No financial data available</div>
       ) : (
-        <Line
-          data={chartData}
-          options={{
-            responsive: true,
-            plugins: {
-              title: {
-                display: true,
-                text: 'Monthly Financial Overview',
-                font: {
-                  size: 16,
-                  weight: 'bold',
+        <div className='horizontal-chart'>   
+          <Line
+            data={chartData}
+            options={{
+              responsive: true,
+              plugins: {
+                title: {
+                  display: true,
+                  text: 'Monthly Financial Overview',
+                  font: {
+                    size: 16,
+                    weight: 'bold',
+                  },
+                },
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      return `${tooltipItem.dataset.label}: $${tooltipItem.raw.toLocaleString()}`;
+                    },
+                  },
+                },
+                legend: {
+                  position: 'top',
                 },
               },
-              tooltip: {
-                callbacks: {
-                  label: (tooltipItem) => {
-                    return `${tooltipItem.dataset.label}: $${tooltipItem.raw.toLocaleString()}`;
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Month',
+                  },
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Amount ($)',
+                  },
+                  beginAtZero: true,
+                  ticks: {
+                    callback: (value) => `$${value.toLocaleString()}`,
                   },
                 },
               },
-              legend: {
-                position: 'top',
-              },
-            },
-            scales: {
-              x: {
-                title: {
-                  display: true,
-                  text: 'Month',
-                },
-                grid: {
-                  display: false,
-                },
-              },
-              y: {
-                title: {
-                  display: true,
-                  text: 'Amount ($)',
-                },
-                beginAtZero: true,
-                ticks: {
-                  callback: (value) => `$${value.toLocaleString()}`,
-                },
-              },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       )}
     </div>
   );

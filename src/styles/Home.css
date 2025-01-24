@@ -1,6 +1,6 @@
 .app-container {
     min-height: 99vh;
-    /* background-color: #f8f9fa; */
+    /* background-color: #1b85ee; */
   }
   
   .header {
@@ -68,6 +68,7 @@
     flex: 1;
     padding: 2rem;
     overflow-y: auto;
+    overflow-x: auto;
   }
 
 

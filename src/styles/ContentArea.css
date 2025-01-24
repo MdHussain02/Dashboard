@@ -6,6 +6,7 @@
     scrollbar-color: #00aeff #f1f1f1;
     transition: scrollbar-color 0.3s ease;
     position: relative;
+    /* background-color: aqua; */
 }
 
 /* Webkit Scrollbar */
@@ -62,4 +63,9 @@
 .content-area::-webkit-scrollbar-thumb:active {
     background-color: #0099cc; /* Darker thumb color when scrolling */
     box-shadow: 0 0 15px rgba(0, 153, 204, 0.8); /* Enhanced shadow during active scrolling */
+}
+
+
+.card-body{
+    border: none;
 }
