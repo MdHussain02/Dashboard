@@ -5,7 +5,7 @@ import '../styles/Login.css';
 import useLogin from '../hooks/useLogin';
 import useAuth from '../hooks/useAuth';
 import { Navigate} from 'react-router-dom';
-import LoadingDots from './utils/LoadingDots';
+import LoadingDots from './Animated/LoadingDots';
 const Login = () => {
   const { isLoggedIn } = useAuth();
   const {

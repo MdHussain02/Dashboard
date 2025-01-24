@@ -5,17 +5,15 @@ import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import Analytics from './components/Sidebar/Analytics';
-import Users from './components/Sidebar/Users';
-import Page4 from './components/Page4';
-import Page5 from './components/Page5';
+import Settings from './components/Settings';
 import Finance from './components/Sidebar/Finance';
-import Page7 from './components/Page7';
 import Profile from './components/Sidebar/Profile';
 import Page9 from './components/Page9';
 import Page10 from './components/Page10';
 import Dashboard from './components/Sidebar/Dashboard';
 import Signup from './components/Signup';
 import GlobalAuthGuard from './components/GlobalAuthGuard';
+import Notifications from './components/Notifications';
 import { RecoilRoot } from 'recoil';
 
 function App() {
@@ -40,10 +38,8 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="finance" element={<Finance />} />
               <Route path="analytics" element={<Analytics/>} />
-              <Route path="users" element={<Users />} />
-              <Route path="page4" element={<Page4 />} />
-              <Route path="page5" element={<Page5 />} />
-              <Route path="page7" element={<Page7 />} />
+              <Route path="notifications" element={<Notifications/>} />
+              <Route path="settings" element={<Settings/>} />
               <Route path="profile" element={<Profile />} />
               <Route path="page9" element={<Page9 />} />
               <Route path="page10" element={<Page10 />} />
